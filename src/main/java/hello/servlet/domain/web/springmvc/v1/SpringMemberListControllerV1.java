@@ -13,7 +13,6 @@ import java.util.List;
 public class SpringMemberListControllerV1 {
 
     private final MemberRepository memberRepository = MemberRepository.getInstance();
-    RequestMappingHandlerMapping
 
     @RequestMapping("/springmvc/v1/members")
     public ModelAndView process() {
