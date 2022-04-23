@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintStream;
 
-@WebServlet(name = "responseJsonServlet", urlPatterns = "/response-json")
+@WebServlet(urlPatterns = "/response-json")
 public class ResponseJsonServlet extends HttpServlet {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
