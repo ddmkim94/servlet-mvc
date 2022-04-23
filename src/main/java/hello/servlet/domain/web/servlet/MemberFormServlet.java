@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "memberFormServlet", urlPatterns = "/servlet/members/new-form")
 public class MemberFormServlet extends HttpServlet {
 
+    // 싱글톤으로 객체를 가져옴
     private final MemberRepository memberRepository = MemberRepository.getInstance();
 
     @Override

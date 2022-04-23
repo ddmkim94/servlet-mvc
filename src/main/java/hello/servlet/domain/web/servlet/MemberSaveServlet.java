@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "memberSaveServlet", urlPatterns = "/servlet/members/save")
+@WebServlet(urlPatterns = "/servlet/members/save")
 public class MemberSaveServlet extends HttpServlet {
 
     private final MemberRepository memberRepository = MemberRepository.getInstance();
@@ -39,5 +39,6 @@ public class MemberSaveServlet extends HttpServlet {
                 " <li>age="+member.getAge()+"</li>\n" + "</ul>\n" +
                 "<a href=\"/index.html\">메인</a>\n" + "</body>\n" +
                 "</html>");
+
     }
 }
