@@ -1,6 +1,10 @@
 package hello.servlet.domain.web.frontcontroller.v2;
 
 import hello.servlet.domain.web.frontcontroller.MyView;
+import hello.servlet.domain.web.frontcontroller.v1.ControllerV1;
+import hello.servlet.domain.web.frontcontroller.v1.controller.MemberFormControllerV1;
+import hello.servlet.domain.web.frontcontroller.v1.controller.MemberListControllerV1;
+import hello.servlet.domain.web.frontcontroller.v1.controller.MemberSaveControllerV1;
 import hello.servlet.domain.web.frontcontroller.v2.controller.MemberFormControllerV2;
 import hello.servlet.domain.web.frontcontroller.v2.controller.MemberListControllerV2;
 import hello.servlet.domain.web.frontcontroller.v2.controller.MemberSaveControllerV2;
@@ -14,12 +18,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(name = "frontControllerV2", urlPatterns = "/front-controller/v2/*")
-public class FrontControllerV2 extends HttpServlet {
+@WebServlet(urlPatterns = "/front-controller/v2/*")
+public class FrontControllerServletV2 extends HttpServlet {
 
     Map<String, ControllerV2> controllerMap = new HashMap<>();
 
-    public FrontControllerV2() {
+    // 생성자로 초기화
+    public FrontControllerServletV2() {
         controllerMap.put("/front-controller/v2/members/new-form", new MemberFormControllerV2());
         controllerMap.put("/front-controller/v2/members/save", new MemberSaveControllerV2());
         controllerMap.put("/front-controller/v2/members", new MemberListControllerV2());
@@ -27,18 +32,17 @@ public class FrontControllerV2 extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String requestURI = request.getRequestURI();
-
         ControllerV2 controller = controllerMap.get(requestURI);
-        if(controller == null) {
+        if (controller == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
 
-        // view 정보를 가진 MyView 객체 리턴
+        // 1. view 정보를 가진 MyView 객체를 반환
         MyView view = controller.process(request, response);
-        // MyView 객체의 render()를 통해 forward!
+
+        // 2. render()를 통해 forward!!
         view.render(request, response);
     }
 }

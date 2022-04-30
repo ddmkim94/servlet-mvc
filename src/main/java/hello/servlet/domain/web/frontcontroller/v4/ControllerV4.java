@@ -4,6 +4,10 @@ import java.util.Map;
 
 public interface ControllerV4 {
 
-    // model에 값을 넣어서 사용해!
+    /**
+     * @param paramMap
+     * @param model
+     * @return viewName
+     */
     String process(Map<String, String> paramMap, Map<String, Object> model);
 }
