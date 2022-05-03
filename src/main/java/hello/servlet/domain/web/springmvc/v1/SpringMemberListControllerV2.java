@@ -5,21 +5,20 @@ import hello.servlet.domain.member.MemberRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.util.List;
 
 @Controller
-public class SpringMemberListControllerV1 {
+public class SpringMemberListControllerV2 {
 
     private final MemberRepository memberRepository = MemberRepository.getInstance();
 
     @RequestMapping("/springmvc/v1/members")
-    public ModelAndView process() {
+    public ModelAndView list() {
         List<Member> members = memberRepository.findAll();
+
         ModelAndView mv = new ModelAndView("members");
         mv.addObject("members", members);
-
         return mv;
     }
 }
